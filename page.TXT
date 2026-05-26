@@ -1,0 +1,43 @@
+// src/app/page.tsx — Main chatbot page
+
+"use client";
+
+import { Bot, Trash2, RefreshCw } from "lucide-react";
+import { ChatWindow } from "@/components/ChatWindow";
+import { ChatInput } from "@/components/ChatInput";
+import { UploadPanel } from "@/components/UploadPanel";
+import { StatusBar } from "@/components/StatusBar";
+import { useChat } from "@/hooks/useChat";
+
+export default function Home() {
+  const { messages, isLoading, sendMessage, clearChat } = useChat();
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-100 to-blue-50 flex items-center justify-center p-4">
+      <div className="w-full max-w-2xl h-[90vh] flex flex-col bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+
+        {/* ── Header ── */}
+        <div className="flex items-center justify-between px-5 py-4 bg-gradient-to-r from-blue-700 to-blue-600 text-white">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center">
+              <Bot className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <h1 className="font-semibold text-base leading-tight">
+                Banking Support Assistant
+              </h1>
+              <p className="text-blue-200 text-xs">
+                Powered by RAG · Grounded in your documents
+              </p>
+            </div>
+          </div>
+
+          <button
+            onClick={clearChat}
+            title="Start new chat"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs text-blue-100 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+          >
+            <Trash2 className="w-3.5 h-3.5" />
+            New Chat
+          </button>
+        </div>
